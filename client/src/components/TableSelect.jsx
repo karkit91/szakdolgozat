@@ -1,20 +1,34 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export default function TableSelect({ selectedTable }) {
+export default function TableSelect({ selectedTable, reservationId }) {
+  const [freeTables, setFreeTables] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/reservedtables/${reservationId}`)
+      .then((data) => data.json())
+      .then((data) => setFreeTables(data));
+  }, []);
+
+  console.log(freeTables);
+
   return (
     <StyledSelect
       aria-label="Table"
       name="table"
-      defaultValue=""
-      value={selectedTable}
+      defaultValue={selectedTable || ""}
     >
       <option value="" disabled hidden>
         Válasszon egy asztalt
       </option>
-      <option value="1">1. asztal</option>
-      <option value="2">2. asztal</option>
-      <option value="3">3. asztal</option>
-      <option value="4">4. asztal</option>
+
+      {freeTables.map((table) => {
+        return (
+          <option key={table} value={table}>
+            {table}. asztal
+          </option>
+        );
+      })}
     </StyledSelect>
   );
 }

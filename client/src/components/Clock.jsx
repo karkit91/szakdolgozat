@@ -24,4 +24,5 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #efc83b;
+  min-width: 200px;
 `;

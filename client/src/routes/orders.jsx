@@ -19,7 +19,15 @@ export default function Orders() {
   return (
     <>
       <Title>Rendelések</Title>
-      <ReservationList reservations={reservations} ordersPage />
+      <ReservationList
+        reservations={reservations?.filter((reservation) => {
+          if (reservation.status === "rejected") return false;
+          if (reservation.status === "pending") return false;
+          if (reservation.status === "active") return true;
+          return false;
+        })}
+        ordersPage
+      />
     </>
   );
 }

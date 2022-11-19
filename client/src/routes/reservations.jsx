@@ -53,7 +53,19 @@ export default function Reservations() {
   return (
     <>
       <Title>Foglalások</Title>
-      <ReservationsList reservations={reservations} reservationsPage />
+      <ReservationsList
+        reservations={reservations?.filter(
+          (reservation) => reservation.status !== "rejected"
+        )}
+        reservationsPage
+      />
+      <Title>Törölt foglalások</Title>
+      <ReservationsList
+        reservations={reservations?.filter(
+          (reservation) => reservation.status === "rejected"
+        )}
+        reservationsPage
+      />
     </>
   );
 }

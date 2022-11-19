@@ -53,6 +53,29 @@ exports.removeOrderItem = (id, reservationId) => {
   }
 };
 
+exports.getReservedTables = (id) => {
+  const freeTables = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+  const reservation = reservations.find((reservation) => reservation.id === id);
+
+  reservations.forEach((actualReservation) => {
+    if (
+      actualReservation.date === reservation.date &&
+      actualReservation.time === reservation.time &&
+      actualReservation.table
+    ) {
+      console.log("A");
+      const index = freeTables.findIndex(
+        (table) => table === actualReservation.table
+      );
+
+      console.log("index", index);
+      freeTables.splice(index, 1);
+    }
+  });
+
+  return freeTables;
+};
 // // Menu
 
 // export function getMenuItem(id) {

@@ -33,7 +33,7 @@ export default function EditReservation() {
 
   return (
     <>
-      <h1>Edit reservation</h1>
+      <h1>Foglalás szerkesztése</h1>
       <StyledForm method="post" id="edit-order-form">
         <Input
           placeholder="Name"
@@ -58,6 +58,7 @@ export default function EditReservation() {
           aria-label="Table"
           name="table"
           selectedTable={reservation.table}
+          reservationId={reservation.id}
         />
 
         <Button type="submit">Save</Button>

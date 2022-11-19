@@ -36,6 +36,7 @@ const ModulContainer = styled.ul`
   list-style-type: none;
   justify-content: center;
   align-items: center;
+  gap: 16px;
 
   li {
     background-color: #efc83b;
@@ -44,6 +45,7 @@ const ModulContainer = styled.ul`
     justify-content: center;
     align-items: center;
     border-radius: 16px;
+    padding: 16px;
   }
   a {
     display: flex;

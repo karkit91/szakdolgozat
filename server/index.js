@@ -10,6 +10,7 @@ const {
   getOrder,
   addOrder,
   removeOrderItem,
+  getReservedTables,
 } = require("./data.js");
 const util = require("util");
 
@@ -45,6 +46,10 @@ app.post("/orders/:id/add", (req, res) => {
 
 app.post("/orders/:id/delete", (req, res) => {
   res.send(removeOrderItem(req.body.id, req.params.id));
+});
+
+app.get("/reservedtables/:id", (req, res) => {
+  res.send(getReservedTables(req.params.id));
 });
 
 app.get("/", (req, res) => {

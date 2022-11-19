@@ -18,107 +18,98 @@ export default function ReservationList({
 
   return (
     <Container>
-      {reservations
-        ?.filter((reservation) => {
-          if (reservationsPage) return true;
-          if (reservation.status === "rejected") return false;
-          if (reservation.status === "pending") return false;
-          if (reservation.status === "active") return true;
-          return false;
-        })
-        ?.map((reservation) => {
-          return (
-            <ReservationsListItem
-              key={reservation.id}
-              // className={reservation.approved ? "accepted" : ""}
-            >
-              <ReservationDetails>
-                <div>{`${reservation.name} (${reservation.numberOfPeople} fő)`}</div>
-                <DateTimeInput
-                  type="datetime-local"
-                  value={`${reservation.date} ${reservation.time}`}
-                  readOnly
-                />
-                <div>
-                  {getReservationStatus(reservation)}
-                  {reservation.status === "active"
-                    ? `${reservation.table} asztalhoz`
-                    : ""}
-                </div>
-              </ReservationDetails>
+      {reservations?.map((reservation) => {
+        return (
+          <ReservationsListItem
+            key={reservation.id}
+            // className={reservation.approved ? "accepted" : ""}
+          >
+            <ReservationDetails>
+              <div>{`${reservation.name} (${reservation.numberOfPeople} fő)`}</div>
+              <DateTimeInput
+                type="datetime-local"
+                value={`${reservation.date} ${reservation.time}`}
+                readOnly
+              />
+              <div>
+                {getReservationStatus(reservation)}
+                {reservation.status === "active"
+                  ? `${reservation.table} asztalhoz`
+                  : ""}
+              </div>
+            </ReservationDetails>
 
-              <ButtonContainer>
-                {reservationsPage ? (
-                  <>
-                    {reservation.status === "accepted" && (
+            <ButtonContainer>
+              {reservationsPage ? (
+                <>
+                  {reservation.status === "accepted" && (
+                    <fetcher.Form method="post">
+                      <input name="id" type="hidden" value={reservation.id} />
+                      <TableSelect
+                        selectedTable={reservation.table}
+                        reservationId={reservation.id}
+                      />
+
+                      <button
+                        className="btn"
+                        name="activateButton"
+                        value="active"
+                        type="submit"
+                      >
+                        {reservation.status === "active"
+                          ? "Felállít"
+                          : "Leültet"}
+                      </button>
+                    </fetcher.Form>
+                  )}
+                  {reservation.status === "pending" && (
+                    <>
                       <fetcher.Form method="post">
                         <input name="id" type="hidden" value={reservation.id} />
-                        <TableSelect selectedTable={reservation.table} />
-
                         <button
                           className="btn"
-                          name="activateButton"
-                          value="active"
+                          name="acceptButton"
+                          value="accept"
                           type="submit"
                         >
-                          {reservation.status === "active"
-                            ? "Felállít"
-                            : "Leültet"}
+                          Elfogad
                         </button>
                       </fetcher.Form>
-                    )}
-                    {reservation.status === "pending" && (
-                      <>
-                        <fetcher.Form method="post">
-                          <input
-                            name="id"
-                            type="hidden"
-                            value={reservation.id}
-                          />
-                          <button
-                            className="btn"
-                            name="acceptButton"
-                            value="accept"
-                            type="submit"
-                          >
-                            Elfogad
-                          </button>
-                        </fetcher.Form>
-                        <Form
-                          method="post"
-                          action={`${reservation.id}/delete`}
-                          onSubmit={(event) => {
-                            if (
-                              !window.confirm("Valóban el szeretnéd utasítani?")
-                            )
-                              event.preventDefault();
-                          }}
-                        >
-                          <button type="submit" className="btn">
-                            Elutasít
-                          </button>
-                        </Form>
-                      </>
-                    )}
+                      <Form
+                        method="post"
+                        action={`${reservation.id}/delete`}
+                        onSubmit={(event) => {
+                          if (
+                            !window.confirm("Valóban el szeretnéd utasítani?")
+                          )
+                            event.preventDefault();
+                        }}
+                      >
+                        <button type="submit" className="btn">
+                          Elutasít
+                        </button>
+                      </Form>
+                    </>
+                  )}
 
-                    <Form action={`${reservation.id}/edit`}>
-                      <button className="btn" type="submit">
-                        Szerkeszt
-                      </button>
-                    </Form>
-                  </>
-                ) : null}
-                {ordersPage ? (
-                  <Form action={`${reservation.id}/add`}>
+                  <Form action={`${reservation.id}/edit`}>
                     <button className="btn" type="submit">
-                      Rendelések felvétele
+                      Szerkeszt
                     </button>
                   </Form>
-                ) : null}
-              </ButtonContainer>
-            </ReservationsListItem>
-          );
-        })}
+                </>
+              ) : null}
+              {ordersPage ? (
+                <Form action={`${reservation.id}/add`}>
+                  <button className="btn" type="submit">
+                    Rendelések felvétele
+                  </button>
+                </Form>
+              ) : null}
+            </ButtonContainer>
+          </ReservationsListItem>
+        );
+      })}
     </Container>
   );
 }

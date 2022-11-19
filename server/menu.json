@@ -1,0 +1,78 @@
+[
+  {
+    "type": "Etel",
+    "menuId": "etel",
+    "items": [
+      {
+        "id": "1",
+        "item": "Kolbasz",
+        "price": "5000",
+        "quantity": "1",
+        "unit": "g",
+        "currency": "Ft"
+      },
+      {
+        "id": "2",
+        "item": "Kenyér",
+        "price": "5000",
+        "quantity": "1",
+        "unit": "kg",
+        "currency": "Ft"
+      },
+      {
+        "id": "3",
+        "item": "Hamburger",
+        "price": "5000",
+        "quantity": "1",
+        "unit": "kg",
+        "currency": "Ft"
+      },
+      {
+        "id": "4",
+        "item": "Pogácsa",
+        "price": "5000",
+        "quantity": "1",
+        "unit": "kg",
+        "currency": "Ft"
+      }
+    ]
+  },
+  {
+    "type": "Ital",
+    "menuId": "ital",
+    "items": [
+      {
+        "id": "1",
+        "item": "Vodka",
+        "price": "150",
+        "quantity": "1",
+        "unit": "ml",
+        "currency": "Ft"
+      },
+      {
+        "id": "2",
+        "item": "Rum",
+        "price": "5000",
+        "quantity": "1",
+        "unit": "ml",
+        "currency": "Ft"
+      },
+      {
+        "id": "3",
+        "item": "Kóla",
+        "price": "5000",
+        "quantity": "1",
+        "unit": "ml",
+        "currency": "Ft"
+      },
+      {
+        "id": "4",
+        "item": "Tea",
+        "price": "5000",
+        "quantity": "1",
+        "unit": "ml",
+        "currency": "Ft"
+      }
+    ]
+  }
+]

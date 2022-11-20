@@ -77,7 +77,7 @@ export default function ReservationList({
                       </fetcher.Form>
                       <Form
                         method="post"
-                        action={`${reservation.id}/delete`}
+                        action={`${reservation.id}/reject`}
                         onSubmit={(event) => {
                           if (
                             !window.confirm("Valóban el szeretnéd utasítani?")

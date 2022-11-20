@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  orders: [],
+  orders: { items: [], inited: false },
 };
 
 export const orderSlice = createSlice({
@@ -9,23 +9,18 @@ export const orderSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
-      const { payload } = action;
-      console.log("payload", payload);
-      // if (state.orders[payload.reservationId]) {
-      //   console.log("mar van");
-      // }
-
-      state.orders = [...state.orders, ...action.payload];
+      state.orders.items = [...state.orders.items, ...action.payload];
+      state.orders.inited = true;
     },
     removeItem: (state, action) => {
-      const index = state.orders.findLastIndex(
+      const index = state.orders.items.findLastIndex(
         (order) =>
           order.reservationId === action.payload.reservationId &&
           order.id === action.payload.id
       );
 
       if (index > -1) {
-        state.orders.splice(index, 1);
+        state.orders.items.splice(index, 1);
       }
     },
   },

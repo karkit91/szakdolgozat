@@ -26,7 +26,7 @@ exports.updateReservation = (id, updates) => {
   }
 };
 
-exports.deleteReservation = (id) => {
+exports.rejectReservation = (id) => {
   this.updateReservation(id, { status: "rejected" });
 };
 
@@ -53,39 +53,26 @@ exports.removeOrderItem = (id, reservationId) => {
   }
 };
 
-exports.getReservedTables = (id) => {
+exports.getFreeTables = (id) => {
   const freeTables = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   const reservation = reservations.find((reservation) => reservation.id === id);
 
   reservations.forEach((actualReservation) => {
     if (
+      actualReservation.id !== reservation.id &&
       actualReservation.date === reservation.date &&
       actualReservation.time === reservation.time &&
       actualReservation.table
     ) {
-      console.log("A");
       const index = freeTables.findIndex(
         (table) => table === actualReservation.table
       );
-
-      console.log("index", index);
       freeTables.splice(index, 1);
     }
   });
 
   return freeTables;
 };
-// // Menu
 
-// export function getMenuItem(id) {
-//   return new Promise((resolve) => {
-//     resolve(menu.find((order) => order.id === id));
-//   });
-// }
-
-// export function getMenu() {
-//   return new Promise((resolve) => {
-//     resolve(menu);
-//   });
-// }
+exports.getMenu = () => menu;

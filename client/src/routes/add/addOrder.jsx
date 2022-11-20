@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getMenu } from "../../data";
+
 import styled from "styled-components";
 import { useLoaderData, useParams } from "react-router-dom";
 import Menu from "../../components/Menu";
 import { addItem, removeItem } from "../../store/orderSlice";
+import Title from "../../components/Title";
+import { getOrder, getMenu } from "../../utils/api";
 
 export async function loader({ params }) {
   const menu = await getMenu();
@@ -16,11 +18,7 @@ export async function loader({ params }) {
     });
   }
 
-  const orderResponse = await fetch(
-    `http://localhost:3001/orders/${params.id}/add`
-  );
-
-  const order = await orderResponse.json();
+  const order = await getOrder(params.id);
   return { menu, order };
 }
 
@@ -29,13 +27,19 @@ export default function AddOrder() {
   const dispatch = useDispatch();
   let { id: reservationId } = useParams();
 
-  useEffect(() => {
-    dispatch(addItem(order));
-  }, []);
-
-  const orderFromStore = useSelector((state) => state.orders).filter(
+  const orderFromStore = useSelector((state) => state.orders.items).filter(
     (order) => order.reservationId === reservationId
   );
+
+  const orderInited = useSelector((state) => state.orders.inited);
+
+  useEffect(() => {
+    console.log(orderFromStore);
+
+    if (!orderInited) {
+      dispatch(addItem(order));
+    }
+  }, []);
 
   const handleAddItem = async (item) => {
     const newItem = {
@@ -72,7 +76,7 @@ export default function AddOrder() {
 
   return (
     <>
-      <h1>Order</h1>
+      <Title>Rendelések</Title>
       <Content>
         <OrderListContainer>
           <OrderList>

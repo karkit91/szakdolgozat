@@ -1,16 +1,11 @@
-import styled from "styled-components";
 import { useLoaderData } from "react-router-dom";
-import { getReservations } from "../data";
 import ReservationList from "../components/ReservationList";
+import Title from "../components/Title";
+import { getAllReservations } from "../utils/api";
 
 export async function loader() {
-  const reservationsResponse = await fetch(
-    "http://localhost:3001/reservations"
-  );
-
-  const reservationsJson = await reservationsResponse.json();
-
-  return reservationsJson;
+  const reservations = await getAllReservations();
+  return reservations;
 }
 
 export default function Orders() {
@@ -31,7 +26,3 @@ export default function Orders() {
     </>
   );
 }
-
-const Title = styled.h1`
-  padding-bottom: 16px;
-`;

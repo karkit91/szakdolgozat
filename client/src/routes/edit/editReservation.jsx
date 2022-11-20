@@ -1,29 +1,18 @@
 import styled from "styled-components";
 import { useLoaderData, Form, redirect, useNavigate } from "react-router-dom";
 import TableSelect from "../../components/TableSelect";
+import Title from "../../components/Title";
+import { getReservation, postUpdateReservation } from "../../utils/api";
 
 export async function loader({ params }) {
-  const reservatioResponse = await fetch(
-    `http://localhost:3001/reservations/${params.id}`
-  );
-
-  const reservation = await reservatioResponse.json();
-
+  const reservation = await getReservation(params.id);
   return reservation;
 }
 
 export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-
-  await fetch(`http://localhost:3001/reservations/${params.id}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ ...updates }),
-  });
-
+  postUpdateReservation(params.id, updates);
   return redirect(`/reservations`);
 }
 
@@ -33,7 +22,7 @@ export default function EditReservation() {
 
   return (
     <>
-      <h1>Foglalás szerkesztése</h1>
+      <Title>Foglalás szerkesztése</Title>
       <StyledForm method="post" id="edit-order-form">
         <Input
           placeholder="Name"

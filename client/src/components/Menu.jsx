@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addItem, removeItem } from "../store/orderSlice";
 import { useParams } from "react-router-dom";
+import {
+  postAddItemToReservation,
+  removeItemFromReservation,
+} from "../utils/api";
 
 export default function Menu({ menu }) {
   const [visible, setVisible] = useState({});
@@ -18,28 +22,13 @@ export default function Menu({ menu }) {
       addedTime: new Date().toISOString(),
     };
 
-    console.log("new item", newItem);
-
-    await fetch(`http://localhost:3001/orders/${reservationId}/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newItem),
-    });
+    await postAddItemToReservation(reservationId, newItem);
 
     dispatch(addItem([newItem]));
   };
 
   const handleRemoveItem = async (id) => {
-    await fetch(`http://localhost:3001/orders/${reservationId}/delete`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id }),
-    });
-
+    await removeItemFromReservation(reservationId, id);
     dispatch(removeItem({ id, reservationId }));
   };
 

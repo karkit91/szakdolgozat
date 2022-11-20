@@ -11,7 +11,7 @@ import EditReservation, {
   action as editReservationAction,
   loader as editReservationLoader,
 } from "./routes/edit/editReservation";
-import { action as deleteReservation } from "./routes/delete/deleteReservation";
+import { action as rejectReservation } from "./routes/delete/deleteReservation";
 import Orders, { loader as ordersLoader } from "./routes/orders";
 import AddOrder, { loader as addOrderLoader } from "./routes/add/addOrder";
 import { store } from "./store/store";
@@ -38,8 +38,8 @@ const router = createBrowserRouter([
             action: editReservationAction,
           },
           {
-            path: "/reservations/:id/delete",
-            action: deleteReservation,
+            path: "/reservations/:id/reject",
+            action: rejectReservation,
           },
           { path: "/orders", element: <Orders />, loader: ordersLoader },
           {

@@ -1,31 +1,21 @@
-import styled from "styled-components";
 import { useLoaderData } from "react-router-dom";
-import { switchReservationStatus, activateReservation } from "../data";
 import ReservationsList from "../components/ReservationList";
+import Title from "../components/Title";
+import { getAllReservations, postUpdateReservation } from "../utils/api";
 
 export async function loader() {
-  const reservationsResponse = await fetch(
-    "http://localhost:3001/reservations"
-  );
-
-  const reservationsJson = await reservationsResponse.json();
-
-  return reservationsJson;
+  const reservations = await getAllReservations();
+  return reservations;
 }
 
 export async function action({ request }) {
   let formData = await request.formData();
 
   if (formData.get("acceptButton")) {
-    await fetch(`http://localhost:3001/reservations/${formData.get("id")}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        status: "accepted",
-      }),
+    postUpdateReservation(formData.get("id"), {
+      status: "accepted",
     });
+    return;
   }
 
   if (formData.get("activateButton")) {
@@ -34,15 +24,9 @@ export async function action({ request }) {
       return;
     }
 
-    await fetch(`http://localhost:3001/reservations/${formData.get("id")}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        status: "active",
-        table: formData.get("table"),
-      }),
+    postUpdateReservation(formData.get("id"), {
+      status: "active",
+      table: formData.get("table"),
     });
   }
 }
@@ -69,7 +53,3 @@ export default function Reservations() {
     </>
   );
 }
-
-const Title = styled.h1`
-  padding-bottom: 16px;
-`;

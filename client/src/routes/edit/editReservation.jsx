@@ -50,14 +50,14 @@ export default function EditReservation() {
           reservationId={reservation.id}
         />
 
-        <Button type="submit">Save</Button>
+        <Button type="submit">Mentés</Button>
         <Button
           type="button"
           onClick={() => {
             navigate(-1);
           }}
         >
-          Cancel
+          Mégse
         </Button>
       </StyledForm>
     </>

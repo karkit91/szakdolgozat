@@ -9,7 +9,8 @@
     "client-install": "npm install --prefix client",
     "server": "nodemon index.js",
     "client": "cd ../ && npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "prod": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",

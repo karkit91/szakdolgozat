@@ -1,13 +1,16 @@
 const fs = require("fs");
 
-let rawMenu = fs.readFileSync("menu.json");
+let rawMenu = fs.readFileSync("./data/menu.json");
 let menu = JSON.parse(rawMenu);
 
-let rawReservations = fs.readFileSync("reservations.json");
+let rawReservations = fs.readFileSync("./data/reservations.json");
 let reservations = JSON.parse(rawReservations);
 
-let rawOrders = fs.readFileSync("orders.json");
+let rawOrders = fs.readFileSync("./data/orders.json");
 let orders = JSON.parse(rawOrders);
+
+let rawTables = fs.readFileSync("./data/tables.json");
+let tables = JSON.parse(rawTables);
 
 // // Reservation
 
@@ -54,7 +57,7 @@ exports.removeOrderItem = (id, reservationId) => {
 };
 
 exports.getFreeTables = (id) => {
-  const freeTables = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const freeTables = tables.tables;
 
   const reservation = reservations.find((reservation) => reservation.id === id);
 

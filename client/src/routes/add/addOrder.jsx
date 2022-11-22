@@ -24,8 +24,8 @@ export async function loader({ params }) {
 
 export default function AddOrder() {
   const { menu, order } = useLoaderData();
-  const dispatch = useDispatch();
   let { id: reservationId } = useParams();
+  const dispatch = useDispatch();
 
   const orderFromStore = useSelector((state) => state.orders.items).filter(
     (order) => order.reservationId === reservationId
@@ -34,8 +34,6 @@ export default function AddOrder() {
   const orderInited = useSelector((state) => state.orders.inited);
 
   useEffect(() => {
-    console.log(orderFromStore);
-
     if (!orderInited) {
       dispatch(addItem(order));
     }
@@ -62,6 +60,7 @@ export default function AddOrder() {
 
     dispatch(addItem([newItem]));
   };
+
   const handleRemoveItem = async (id) => {
     await fetch(`http://localhost:3001/orders/${reservationId}/delete`, {
       method: "POST",
@@ -106,9 +105,13 @@ export default function AddOrder() {
               );
             })}
           </OrderList>
-          <div>
-            Sum: {orderFromStore.reduce((prev, curr) => prev + +curr.price, 0)}
-          </div>
+          <FooterMenu>
+            <SumDiv>
+              Végösszeg:{" "}
+              {orderFromStore.reduce((prev, curr) => prev + +curr.price, 0)}
+            </SumDiv>
+            <StyledButton>Fizet</StyledButton>
+          </FooterMenu>
         </OrderListContainer>
         <Menu menu={menu || []} />
       </Content>
@@ -137,6 +140,7 @@ const OrderList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding-bottom: 8px;
 `;
 
 const ItemRow = styled.div`
@@ -154,4 +158,16 @@ const StyledButton = styled.button`
   font-size: 18px;
   background-color: #efc83b;
   border-radius: 8px;
+`;
+
+const FooterMenu = styled.div`
+  background-color: black;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px;
+`;
+
+const SumDiv = styled.div`
+  color: #ffffff;
 `;

@@ -25,7 +25,7 @@ exports.updateReservation = (id, updates) => {
     reservations[index] = { ...reservations[index], ...updates };
 
     let data = JSON.stringify(reservations);
-    fs.writeFileSync("reservations.json", data);
+    fs.writeFileSync("./data/reservations.json", data);
   }
 };
 
@@ -41,7 +41,7 @@ exports.getOrder = (id) =>
 exports.addOrder = (order) => {
   orders.push(order);
   let data = JSON.stringify(orders);
-  fs.writeFileSync("orders.json", data);
+  fs.writeFileSync("./data/orders.json", data);
 };
 
 exports.removeOrderItem = (id, reservationId) => {
@@ -52,7 +52,7 @@ exports.removeOrderItem = (id, reservationId) => {
   if (index > -1) {
     orders.splice(index, 1);
     let data = JSON.stringify(orders);
-    fs.writeFileSync("orders.json", data);
+    fs.writeFileSync("./data/orders.json", data);
   }
 };
 

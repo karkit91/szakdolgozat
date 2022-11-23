@@ -3,23 +3,28 @@ const fs = require("fs");
 let rawMenu = fs.readFileSync("./data/menu.json");
 let menu = JSON.parse(rawMenu);
 
-let rawReservations = fs.readFileSync("./data/reservations.json");
-let reservations = JSON.parse(rawReservations);
-
 let rawOrders = fs.readFileSync("./data/orders.json");
 let orders = JSON.parse(rawOrders);
 
 let rawTables = fs.readFileSync("./data/tables.json");
 let tables = JSON.parse(rawTables);
 
+const readReservationsFromFile = () => {
+  let rawReservations = fs.readFileSync("./data/reservations.json");
+  return JSON.parse(rawReservations);
+};
+
 // // Reservation
 
-exports.getReservation = (id) =>
-  reservations.find((reservation) => reservation.id === id);
+exports.getReservation = (id) => {
+  const reservations = readReservationsFromFile();
+  return reservations.find((reservation) => reservation.id === id);
+};
 
-exports.getReservations = () => reservations;
+exports.getReservations = () => readReservationsFromFile();
 
 exports.updateReservation = (id, updates) => {
+  const reservations = readReservationsFromFile();
   const index = reservations.findIndex((item) => item.id === id);
   if (index > -1) {
     reservations[index] = { ...reservations[index], ...updates };
@@ -58,7 +63,7 @@ exports.removeOrderItem = (id, reservationId) => {
 
 exports.getFreeTables = (id) => {
   const freeTables = tables.tables;
-
+  const reservations = readReservationsFromFile();
   const reservation = reservations.find((reservation) => reservation.id === id);
 
   reservations.forEach((actualReservation) => {

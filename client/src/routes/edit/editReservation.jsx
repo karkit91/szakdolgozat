@@ -12,7 +12,7 @@ export async function loader({ params }) {
 export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-  postUpdateReservation(params.id, updates);
+  await postUpdateReservation(params.id, updates);
   return redirect(`/reservations`);
 }
 

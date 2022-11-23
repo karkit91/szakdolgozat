@@ -12,7 +12,7 @@ export async function action({ request }) {
   let formData = await request.formData();
 
   if (formData.get("acceptButton")) {
-    postUpdateReservation(formData.get("id"), {
+    await postUpdateReservation(formData.get("id"), {
       status: "accepted",
     });
     return;
@@ -24,7 +24,7 @@ export async function action({ request }) {
       return;
     }
 
-    postUpdateReservation(formData.get("id"), {
+    await postUpdateReservation(formData.get("id"), {
       status: "active",
       table: formData.get("table"),
     });

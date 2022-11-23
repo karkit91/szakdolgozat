@@ -7,7 +7,7 @@ export default function TableSelect({ selectedTable, reservationId }) {
 
   useEffect(() => {
     getFreeTables(reservationId).then((data) => setFreeTables(data));
-  }, []);
+  }, [reservationId]);
 
   return (
     <StyledSelect

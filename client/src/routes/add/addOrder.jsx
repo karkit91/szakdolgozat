@@ -37,7 +37,7 @@ export default function AddOrder() {
     if (!orderInited) {
       dispatch(addItem(order));
     }
-  }, []);
+  }, [dispatch, order, orderInited]);
 
   const handleAddItem = async (item) => {
     const newItem = {

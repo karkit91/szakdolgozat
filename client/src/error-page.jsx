@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import { useRouteError, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function ErrorPage() {
-  const error = useRouteError();
-
   return (
     <Container>
       <h1>404!</h1>

@@ -63,8 +63,15 @@ exports.removeOrderItem = (id, reservationId) => {
 
 exports.getFreeTables = (id) => {
   const freeTables = tables.tables;
+  console.log(freeTables);
+
   const reservations = readReservationsFromFile();
+
+  console.log(reservations);
+
   const reservation = reservations.find((reservation) => reservation.id === id);
+
+  console.log("vizsgalt res", reservation);
 
   reservations.forEach((actualReservation) => {
     if (

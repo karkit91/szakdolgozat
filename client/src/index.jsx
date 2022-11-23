@@ -14,6 +14,7 @@ import EditReservation, {
 import { action as rejectReservation } from "./routes/delete/deleteReservation";
 import Orders, { loader as ordersLoader } from "./routes/orders";
 import AddOrder, { loader as addOrderLoader } from "./routes/add/addOrder";
+import ErrorPage from "./error-page";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import "./index.css";
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         children: [

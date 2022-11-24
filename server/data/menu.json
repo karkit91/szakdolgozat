@@ -1,75 +1,75 @@
 [
   {
-    "type": "Etel",
+    "type": "Ételek",
     "menuId": "etel",
     "items": [
       {
         "id": "1",
-        "item": "Kolbasz",
+        "item": "Pulled pork hasábburgonyával",
         "price": "5000",
         "quantity": "1",
-        "unit": "g",
+        "unit": "db",
         "currency": "Ft"
       },
       {
         "id": "2",
-        "item": "Kenyér",
-        "price": "5000",
+        "item": "Angus burger steak burgonyával",
+        "price": "6000",
         "quantity": "1",
-        "unit": "kg",
+        "unit": "db",
         "currency": "Ft"
       },
       {
         "id": "3",
-        "item": "Hamburger",
-        "price": "5000",
+        "item": "Sajtos-baconös hamburger hasábburgonyával",
+        "price": "4000",
         "quantity": "1",
-        "unit": "kg",
+        "unit": "db",
         "currency": "Ft"
       },
       {
         "id": "4",
-        "item": "Pogácsa",
-        "price": "5000",
+        "item": "Vega burger salátával",
+        "price": "3500",
         "quantity": "1",
-        "unit": "kg",
+        "unit": "db",
         "currency": "Ft"
       }
     ]
   },
   {
-    "type": "Ital",
+    "type": "Italok",
     "menuId": "ital",
     "items": [
       {
         "id": "1",
-        "item": "Vodka",
-        "price": "150",
-        "quantity": "1",
+        "item": "Absolut Vodka",
+        "price": "1200",
+        "quantity": "30",
         "unit": "ml",
         "currency": "Ft"
       },
       {
         "id": "2",
-        "item": "Rum",
-        "price": "5000",
-        "quantity": "1",
+        "item": "Captain Morgan Rum",
+        "price": "1100",
+        "quantity": "300",
         "unit": "ml",
         "currency": "Ft"
       },
       {
         "id": "3",
-        "item": "Kóla",
-        "price": "5000",
-        "quantity": "1",
+        "item": "Pepsi cola",
+        "price": "600",
+        "quantity": "250",
         "unit": "ml",
         "currency": "Ft"
       },
       {
         "id": "4",
-        "item": "Tea",
-        "price": "5000",
-        "quantity": "1",
+        "item": "Heineken",
+        "price": "1000",
+        "quantity": "500",
         "unit": "ml",
         "currency": "Ft"
       }

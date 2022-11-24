@@ -73,13 +73,10 @@ export default function ReservationList({
   );
 
   return (
-    <Container>
+    <ul>
       {reservations?.map((reservation) => {
         return (
-          <ReservationsListItem
-            key={reservation.id}
-            // className={reservation.approved ? "accepted" : ""}
-          >
+          <ReservationsListItem key={reservation.id}>
             <ReservationDetails>
               <div>{`${reservation.name} (${reservation.numberOfPeople} fő)`}</div>
               <DateTimeInput
@@ -87,12 +84,14 @@ export default function ReservationList({
                 value={`${reservation.date} ${reservation.time}`}
                 readOnly
               />
-              <div>
+              <StatusDiv reservationStatus={reservation.status}>
                 {getReservationStatus(reservation)}
                 {reservation.status === "active"
                   ? `${reservation.table} asztalhoz`
                   : ""}
-              </div>
+              </StatusDiv>
+              <div>Telefonszám: {reservation.phone}</div>
+              <div>Email: {reservation.email}</div>
             </ReservationDetails>
 
             <ButtonContainer>
@@ -108,13 +107,9 @@ export default function ReservationList({
           </ReservationsListItem>
         );
       })}
-    </Container>
+    </ul>
   );
 }
-
-const Container = styled.ul`
-  /* padding: 16px; */
-`;
 
 const ReservationsListItem = styled.li`
   display: flex;
@@ -153,4 +148,18 @@ const DateTimeInput = styled.input`
   font-size: 16px;
   border-radius: 16px;
   text-align: center;
+`;
+
+const StatusDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  padding: 16px;
+  background-color: ${({ reservationStatus }) => {
+    if (reservationStatus === "pending") return "#ff7033";
+    if (reservationStatus === "accepted") return "#13d49d";
+    if (reservationStatus === "active") return "#38ff15";
+    return "black";
+  }};
 `;

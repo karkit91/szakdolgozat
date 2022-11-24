@@ -11,7 +11,16 @@ export async function loader({ params }) {
 
 export async function action({ request, params }) {
   const formData = await request.formData();
-  const updates = Object.fromEntries(formData);
+  let updates = Object.fromEntries(formData);
+
+  delete updates.reopen;
+
+  if (formData.get("reopen") === "true") {
+    updates.status = "pending";
+  }
+
+  console.log(updates);
+
   await postUpdateReservation(params.id, updates);
   return redirect(`/reservations`);
 }
@@ -25,6 +34,7 @@ export default function EditReservation() {
       <Title>Foglalás szerkesztése</Title>
       <StyledForm method="post" id="edit-order-form">
         <Input
+          disabled={reservation.status === "rejected"}
           placeholder="Name"
           aria-label="Name"
           type="text"
@@ -32,26 +42,41 @@ export default function EditReservation() {
           defaultValue={reservation.name}
         />
         <Input
+          disabled={reservation.status === "rejected"}
           aria-label="Date"
           type="date"
           name="date"
           defaultValue={reservation.date}
         />
         <Input
+          disabled={reservation.status === "rejected"}
           aria-label="Time"
           type="time"
           name="time"
           defaultValue={reservation.time}
         />
+        <Input
+          disabled={reservation.status === "rejected"}
+          className="people"
+          aria-label="Number of people"
+          type="number"
+          name="numberOfPeople"
+          defaultValue={reservation.numberOfPeople}
+        />
         <TableSelect
+          disabled={reservation.status === "rejected"}
           aria-label="Table"
           name="table"
           selectedTable={reservation.table}
           reservationId={reservation.id}
         />
 
-        <Button type="submit">Mentés</Button>
+        <Button disabled={reservation.status === "rejected"} type="submit">
+          Mentés
+        </Button>
+
         <Button
+          disabled={reservation.status === "rejected"}
           type="button"
           onClick={() => {
             navigate(-1);
@@ -59,6 +84,17 @@ export default function EditReservation() {
         >
           Mégse
         </Button>
+
+        {reservation.status === "rejected" && (
+          <>
+            <Button type="submit">Újranyit</Button>
+            <input
+              type="hidden"
+              name="reopen"
+              value={reservation.status === "rejected"}
+            />
+          </>
+        )}
       </StyledForm>
     </>
   );
@@ -74,6 +110,11 @@ const Input = styled.input`
   font-size: 16px;
   border-radius: 16px;
   text-align: center;
+
+  &.people {
+    max-width: 48px;
+    min-width: 48px;
+  }
 `;
 
 const Button = styled.button`
@@ -84,4 +125,8 @@ const Button = styled.button`
   padding: 16px;
   border-radius: 16px;
   margin-left: 16px;
+
+  &:disabled {
+    opacity: 50%;
+  }
 `;

@@ -6,12 +6,14 @@ let menu = JSON.parse(rawMenu);
 let rawOrders = fs.readFileSync("./data/orders.json");
 let orders = JSON.parse(rawOrders);
 
-let rawTables = fs.readFileSync("./data/tables.json");
-let tables = JSON.parse(rawTables);
-
 const readReservationsFromFile = () => {
   let rawReservations = fs.readFileSync("./data/reservations.json");
   return JSON.parse(rawReservations);
+};
+
+const readTablesFromFile = () => {
+  let rawTables = fs.readFileSync("./data/tables.json");
+  return JSON.parse(rawTables);
 };
 
 // // Reservation
@@ -62,16 +64,12 @@ exports.removeOrderItem = (id, reservationId) => {
 };
 
 exports.getFreeTables = (id) => {
-  const freeTables = tables.tables;
-  console.log(freeTables);
+  const tablesFromFile = readTablesFromFile();
+  const freeTables = tablesFromFile.tables;
 
   const reservations = readReservationsFromFile();
 
-  console.log(reservations);
-
   const reservation = reservations.find((reservation) => reservation.id === id);
-
-  console.log("vizsgalt res", reservation);
 
   reservations.forEach((actualReservation) => {
     if (

@@ -15,12 +15,20 @@ export default function Clock() {
     };
   }, []);
 
-  return <Container>{date.toLocaleString()}</Container>;
+  return (
+    <Container>
+      <div>{date.toLocaleDateString("hu-HU")}</div>
+      <div>
+        <b>{date.toLocaleTimeString()}</b>
+      </div>
+    </Container>
+  );
 }
 
 const Container = styled.div`
   color: #2b2222;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #efc83b;

@@ -2,15 +2,23 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getFreeTables } from "../utils/api";
 
-export default function TableSelect({ selectedTable, reservationId }) {
+export default function TableSelect({
+  selectedTable,
+  reservationId,
+  disabled,
+}) {
   const [freeTables, setFreeTables] = useState([]);
 
   useEffect(() => {
-    getFreeTables(reservationId).then((data) => setFreeTables(data));
+    getFreeTables(reservationId).then((data) => {
+      console.log(data);
+      setFreeTables(data);
+    });
   }, [reservationId]);
 
   return (
     <StyledSelect
+      disabled={disabled}
       aria-label="Table"
       name="table"
       defaultValue={selectedTable || ""}

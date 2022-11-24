@@ -10,7 +10,6 @@ export async function loader() {
 
 export async function action({ request }) {
   let formData = await request.formData();
-
   if (formData.get("acceptButton")) {
     await postUpdateReservation(formData.get("id"), {
       status: "accepted",

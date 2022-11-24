@@ -45,7 +45,6 @@ const ModulContainer = styled.ul`
     justify-content: center;
     align-items: center;
     border-radius: 16px;
-    padding: 16px;
   }
   a {
     display: flex;
@@ -56,5 +55,6 @@ const ModulContainer = styled.ul`
     font-size: 24px;
     font-weight: bold;
     text-transform: uppercase;
+    padding: 16px;
   }
 `;

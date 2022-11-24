@@ -10,14 +10,6 @@ import { getOrder, getMenu } from "../../utils/api";
 
 export async function loader({ params }) {
   const menu = await getMenu();
-
-  if (!menu) {
-    throw new Response("", {
-      status: 404,
-      statusText: "Not Found",
-    });
-  }
-
   const order = await getOrder(params.id);
   return { menu, order };
 }
@@ -47,8 +39,6 @@ export default function AddOrder() {
       menuId: item.menuId,
       addedTime: new Date().toISOString(),
     };
-
-    console.log("new item", newItem);
 
     await fetch(`http://localhost:3001/orders/${reservationId}/add`, {
       method: "POST",

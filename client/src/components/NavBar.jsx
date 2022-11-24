@@ -19,7 +19,7 @@ export default function NavBar() {
                     isActive ? "active" : isPending ? "pending" : ""
                   }
                 >
-                  Modul választó
+                  Kezdő oldal
                 </NavLink>
               </li>
               <li>

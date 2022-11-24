@@ -1,0 +1,63 @@
+Date : 2022-11-24 13:57:25
+Directory : /Users/adamnemeth/MyDev2022/szakdolgozat/
+Total : 24 files,  30670 codes, 24 comments, 165 blanks, all 30859 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| JSON             |          3 |     29,550 |          0 |          3 |     29,553 |
+| JavaScript React |         15 |        954 |          0 |        105 |      1,059 |
+| JavaScript       |          3 |         77 |          1 |         17 |         95 |
+| Markdown         |          1 |         38 |          0 |         33 |         71 |
+| CSS              |          1 |         31 |          0 |          6 |         37 |
+| HTML             |          1 |         20 |         23 |          1 |         44 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                    | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                       |         24 |     30,670 |         24 |        165 |     30,859 |
+| client                                                                                  |         24 |     30,670 |         24 |        165 |     30,859 |
+| client/public                                                                           |          2 |         45 |         23 |          2 |         70 |
+| client/src                                                                              |         19 |      1,062 |          1 |        128 |      1,191 |
+| client/src/components                                                                   |          6 |        438 |          0 |         43 |        481 |
+| client/src/routes                                                                       |          7 |        427 |          0 |         55 |        482 |
+| client/src/routes/add                                                                   |          1 |        143 |          0 |         21 |        164 |
+| client/src/routes/delete                                                                |          1 |          6 |          0 |          2 |          8 |
+| client/src/routes/edit                                                                  |          1 |        118 |          0 |         15 |        133 |
+| client/src/store                                                                        |          2 |         31 |          1 |          8 |         40 |
+| client/src/utils                                                                        |          1 |         46 |          0 |          9 |         55 |
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                                | language         | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/README.md                               | Markdown         |         38 |          0 |         33 |         71 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/package-lock.json                       | JSON             |     29,483 |          0 |          1 |     29,484 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/package.json                            | JSON             |         42 |          0 |          1 |         43 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/public/index.html                       | HTML             |         20 |         23 |          1 |         44 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/public/manifest.json                    | JSON             |         25 |          0 |          1 |         26 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/components/Clock.jsx                | JavaScript React |         31 |          0 |          6 |         37 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/components/Menu.jsx                 | JavaScript React |        125 |          0 |         11 |        136 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/components/NavBar.jsx               | JavaScript React |         81 |          0 |          4 |         85 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/components/ReservationList.jsx      | JavaScript React |        153 |          0 |         13 |        166 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/components/TableSelect.jsx          | JavaScript React |         41 |          0 |          6 |         47 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/components/Title.jsx                | JavaScript React |          7 |          0 |          3 |         10 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/error-page.jsx                      | JavaScript React |         27 |          0 |          4 |         31 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/index.css                           | CSS              |         31 |          0 |          6 |         37 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/index.jsx                           | JavaScript React |         62 |          0 |          3 |         65 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/routes/add/addOrder.jsx             | JavaScript React |        143 |          0 |         21 |        164 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/routes/delete/deleteReservation.jsx | JavaScript React |          6 |          0 |          2 |          8 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/routes/edit/editReservation.jsx     | JavaScript React |        118 |          0 |         15 |        133 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/routes/index.jsx                    | JavaScript React |         58 |          0 |          3 |         61 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/routes/orders.jsx                   | JavaScript React |         25 |          0 |          4 |         29 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/routes/reservations.jsx             | JavaScript React |         48 |          0 |          7 |         55 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/routes/root.jsx                     | JavaScript React |         29 |          0 |          3 |         32 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/store/orderSlice.js                 | JavaScript       |         26 |          1 |          6 |         33 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/store/store.js                      | JavaScript       |          5 |          0 |          2 |          7 |
+| /Users/adamnemeth/MyDev2022/szakdolgozat/client/src/utils/api.js                        | JavaScript       |         46 |          0 |          9 |         55 |
+| Total                                                                                   |                  |     30,670 |         24 |        165 |     30,859 |
++-----------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+

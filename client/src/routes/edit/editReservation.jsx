@@ -19,8 +19,6 @@ export async function action({ request, params }) {
     updates.status = "pending";
   }
 
-  console.log(updates);
-
   await postUpdateReservation(params.id, updates);
   return redirect(`/reservations`);
 }

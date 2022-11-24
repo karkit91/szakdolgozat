@@ -11,7 +11,6 @@ export default function TableSelect({
 
   useEffect(() => {
     getFreeTables(reservationId).then((data) => {
-      console.log(data);
       setFreeTables(data);
     });
   }, [reservationId]);

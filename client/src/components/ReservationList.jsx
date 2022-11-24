@@ -157,9 +157,9 @@ const StatusDiv = styled.div`
   border-radius: 16px;
   padding: 16px;
   background-color: ${({ reservationStatus }) => {
-    if (reservationStatus === "pending") return "#ff7033";
+    if (reservationStatus === "pending") return "#fb7b44";
     if (reservationStatus === "accepted") return "#13d49d";
     if (reservationStatus === "active") return "#38ff15";
-    return "black";
+    return "#bf0f02";
   }};
 `;

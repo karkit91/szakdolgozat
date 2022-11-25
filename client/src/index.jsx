@@ -28,24 +28,24 @@ const router = createBrowserRouter([
       {
         children: [
           {
-            path: "/reservations",
+            path: "reservations",
             element: <Reservations />,
             loader: reservationsLoader,
             action: reservationsAction,
           },
           {
-            path: "/reservations/:id/edit",
+            path: "reservations/:id/edit",
             element: <EditReservation />,
             loader: editReservationLoader,
             action: editReservationAction,
           },
           {
-            path: "/reservations/:id/reject",
+            path: "reservations/:id/reject",
             action: rejectReservation,
           },
-          { path: "/orders", element: <Orders />, loader: ordersLoader },
+          { path: "orders", element: <Orders />, loader: ordersLoader },
           {
-            path: "/orders/:id/add",
+            path: "orders/:id/add",
             element: <AddOrder />,
             loader: addOrderLoader,
           },

@@ -6,7 +6,12 @@ import { useLoaderData, useParams } from "react-router-dom";
 import Menu from "../../components/Menu";
 import { addItem, removeItem } from "../../store/orderSlice";
 import Title from "../../components/Title";
-import { getOrder, getMenu } from "../../utils/api";
+import {
+  getOrder,
+  getMenu,
+  addItemToOrder,
+  removeItemFromOrder,
+} from "../../utils/api";
 
 export async function loader({ params }) {
   const menu = await getMenu();
@@ -40,25 +45,12 @@ export default function AddOrder() {
       addedTime: new Date().toISOString(),
     };
 
-    await fetch(`http://localhost:3001/orders/${reservationId}/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newItem),
-    });
-
+    await addItemToOrder(reservationId, newItem);
     dispatch(addItem([newItem]));
   };
 
   const handleRemoveItem = async (id) => {
-    await fetch(`http://localhost:3001/orders/${reservationId}/delete`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id }),
-    });
+    await removeItemFromOrder(reservationId, id);
 
     dispatch(removeItem({ id, reservationId }));
   };

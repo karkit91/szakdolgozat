@@ -52,3 +52,23 @@ export const getOrder = async (id) =>
 
 export const getMenu = async () =>
   (await fetch(`http://localhost:3001/menu`)).json();
+
+export const addItemToOrder = (reservationId, item) => {
+  return fetch(`http://localhost:3001/orders/${reservationId}/add`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(item),
+  });
+};
+
+export const removeItemFromOrder = (reservationId, itemId) => {
+  return fetch(`http://localhost:3001/orders/${reservationId}/delete`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ itemId }),
+  });
+};
